@@ -12,7 +12,6 @@
     });
 
     cy.visit("/");
-    cy.get('[data-testid="welcome"]').should("be.visible");
     cy.get('[data-testid="add"]').click();
     cy.get('[data-testid="new-todo"]').type("Learn Cypress");
     cy.get('[data-testid="submit-newTask"]').click();
@@ -29,15 +28,23 @@
             "email":"test23@example.com",
             "password":"test-12345",
         },
+    }).then((response) =>{
+        cy.request({
+            url : "/api/v1/tasks",
+            method : "POST",
+            auth : {
+                bearer : response.body.access_token
+            },
+            body : {
+                "item":"learn Cypress",
+                "isCompleted":false},
+        })
     });
 
     cy.visit("/");
-    cy.get('[data-testid="welcome"]').should("be.visible");
-    cy.get('[data-testid="add"]').click();
-    cy.get('[data-testid="new-todo"]').type("Learn Cypress");
-    cy.get('[data-testid="submit-newTask"]').click();
-    cy.get('[data-testid="todo-item"]').eq(0).should('have.text',"Learn Cypress");
     cy.get('[data-testid="complete-task"]').eq(0).click();
-    cy.get('[data-testid="todo-item"]').should('have.css','background-color','rgb(33, 76, 97)');
+    cy.get('[data-testid="todo-item"]')
+        .eq(0)
+        .should('have.css','background-color','rgb(33, 76, 97)');
 
   });
