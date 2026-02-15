@@ -2,10 +2,16 @@
 
   it("Should be able to add a todo",() => {
 
+    cy.request({
+        url : "/api/v1/users/login",
+        method: "POST",
+        body:{
+            "email":"test23@example.com",
+            "password":"test-12345",
+        },
+    });
+
     cy.visit("/");
-    cy.get('[data-testid="email"]').type("test23@example.com");
-    cy.get('[data-testid="password"]').type("test-12345");
-    cy.get('[data-testid="submit"]').click();
     cy.get('[data-testid="welcome"]').should("be.visible");
     cy.get('[data-testid="add"]').click();
     cy.get('[data-testid="new-todo"]').type("Learn Cypress");
@@ -16,10 +22,16 @@
 
   it("Should be able to mark a todo as completed",() => {
 
+     cy.request({
+        url : "/api/v1/users/login",
+        method: "POST",
+        body:{
+            "email":"test23@example.com",
+            "password":"test-12345",
+        },
+    });
+
     cy.visit("/");
-    cy.get('[data-testid="email"]').type("test23@example.com");
-    cy.get('[data-testid="password"]').type("test-12345");
-    cy.get('[data-testid="submit"]').click();
     cy.get('[data-testid="welcome"]').should("be.visible");
     cy.get('[data-testid="add"]').click();
     cy.get('[data-testid="new-todo"]').type("Learn Cypress");
