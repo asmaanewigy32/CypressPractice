@@ -1,10 +1,11 @@
   /// <referance types= "cypress" />
+import LoginPage from "../pages/LoginPage";
 
   it("Should be able to login using valid mail and password",() => {
-    cy.visit("/");
-    cy.get('[data-testid="email"]').type("test23@example.com");
-    cy.get('[data-testid="password"]').type("test-12345");
-    cy.get('[data-testid="submit"]').click();
+    
+    const loginPage = new LoginPage();
+    loginPage.load();
+    loginPage.login("test23@example.com","test-12345");
     cy.get('[data-testid="welcome"]').should("be.visible");
 
   });
