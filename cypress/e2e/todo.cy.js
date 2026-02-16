@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker';
 /// <referance types= "cypress" />
 
 it("Should be able to add a todo", () => {
@@ -6,9 +7,9 @@ it("Should be able to add a todo", () => {
         url: "/api/v1/users/register",
         method: "POST",
         body: {
-            firstName: "asmaa",
-            lastName: "latif",
-            email: "asmaa5@exmaple.com",
+            firstName: faker.person.firstName(),
+            lastName: faker.person.lastName(),
+            email: faker.internet.email(),
             password: "Test-12345",
         },
     });
@@ -26,10 +27,10 @@ it("Should be able to mark a todo as completed", () => {
     cy.request({
         url: "/api/v1/users/register",
         method: "POST",
-        body: {
-           firstName: "asmaa",
-            lastName: "latif",
-            email: "asmaa3@exmaple.com",
+       body: {
+            firstName: faker.person.firstName(),
+            lastName: faker.person.lastName(),
+            email: faker.internet.email(),
             password: "Test-12345",
         },
     }).then((response) => {
