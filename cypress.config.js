@@ -1,7 +1,8 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
-  allowCypressEnv: false,
+  projectId: "nrogzs",
+  allowCypressEnv: true,
 
   e2e: {
     baseUrl: "https://qacart-todo.herokuapp.com",
