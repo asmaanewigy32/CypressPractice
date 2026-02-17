@@ -1,3 +1,5 @@
+import TodoPage from "./TodoPage";
+
 class LoginPage{
 
     // Elements
@@ -21,6 +23,7 @@ class LoginPage{
     load()
     {
         cy.visit("/");
+        return this;
     }
 
     login(email,password)
@@ -28,6 +31,7 @@ class LoginPage{
         this.emailInput.type(email);
         this.passwordInput.type(password);
         this.submitButton.click();
+        return new TodoPage();
     }
 
 }
